@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.xmu.groupon.dao.GrouponDaoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! - in cn.edu.xmu.groupon.dao.GrouponDaoTest
+selectTest  Time elapsed: 0.009 s  <<< ERROR!
+java.lang.NullPointerException
+	at cn.edu.xmu.groupon.dao.GrouponDaoTest.selectTest(GrouponDaoTest.java:21)
+
