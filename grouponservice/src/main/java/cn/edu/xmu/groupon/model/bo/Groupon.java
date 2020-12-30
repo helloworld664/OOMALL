@@ -3,6 +3,7 @@ package cn.edu.xmu.groupon.model.bo;
 import cn.edu.xmu.groupon.model.po.GrouponPo;
 import cn.edu.xmu.groupon.model.vo.GrouponVo;
 import cn.edu.xmu.ooad.model.VoObject;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author XC
  */
 
+@Data
 public class Groupon implements VoObject {
     public Long id;
 
@@ -33,86 +35,6 @@ public class Groupon implements VoObject {
 
     public LocalDateTime gmtModified;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(LocalDateTime beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
-    public Long getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
-
-    public Long getGoodsSPUId() {
-        return goodsSPUId;
-    }
-
-    public void setGoodsSPUId(Long goodsSPUId) {
-        this.goodsSPUId = goodsSPUId;
-    }
-
-    public String getStrategy() {
-        return strategy;
-    }
-
-    public void setStrategy(String strategy) {
-        this.strategy = strategy;
-    }
-
-    public LocalDateTime getGmtCreated() {
-        return gmtCreated;
-    }
-
-    public void setGmtCreated(LocalDateTime gmtCreated) {
-        this.gmtCreated = gmtCreated;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public enum State {
         OFFSHELVES(0, "已下线"),
         ONSHELVES(1, "已上线"),
@@ -131,9 +53,9 @@ public class Groupon implements VoObject {
 
         private String name;
 
-        State(int code, String value) {
+        State(int code, String name) {
             this.code = code;
-            this.name = value;
+            this.name = name;
         }
 
         public static Groupon.State getTypeByCode(int code) {

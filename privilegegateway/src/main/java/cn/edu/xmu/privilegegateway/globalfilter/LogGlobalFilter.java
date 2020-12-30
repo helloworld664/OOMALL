@@ -110,7 +110,7 @@ public class LogGlobalFilter implements GlobalFilter, Ordered {
 
         HttpMethod httpMethod = serverHttpRequest.getMethod();
         logger.debug(commonUri + '-' + methodMap.get(httpMethod));
-        Integer privilegeId = 1;//(Integer) redisTemplate.boundHashOps("Priv").get(commonUri + '-' + methodMap.get(httpMethod));
+        Integer privilegeId = (Integer) redisTemplate.boundHashOps("Priv").get(commonUri + '-' + methodMap.get(httpMethod));
 
         Log log = new Log();
         privilegeId = privilegeId == null ? -1 : privilegeId; // 如果Redis中没有关于此URL的记录则赋值-1

@@ -292,7 +292,7 @@ public class GrouponController {
             @ApiResponse(code = 907, message = "团购活动状态禁止"),
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{shopId}/groupons/{id}/onshelves")
+    @PutMapping(path = "/shops/{shopId}/groupons/{id}/onshelves")
     public Object grouponsOnShelves(
             @PathVariable("shopId") Long shopId,
             @PathVariable("id") Long id
@@ -319,7 +319,7 @@ public class GrouponController {
             @ApiResponse(code = 907, message = "团购活动状态禁止"),
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{shopId}/groupons/{id}/offshelves")
+    @PutMapping(path = "/shops/{shopId}/groupons/{id}/offshelves")
     public Object grouponsOffShelves(
             @PathVariable("shopId") Long shopId,
             @PathVariable("id") Long id

@@ -416,9 +416,8 @@ public class PrivilegeController {
             @ApiResponse(code = 736, message = "角色名已存在"),
     })
     @Audit
-    @PostMapping("/shops/{did}/roles")
-    public Object insertRole(@PathVariable("did") Long did,
-                             @Validated @RequestBody RoleVo vo, BindingResult bindingResult,
+    @PostMapping("/roles")
+    public Object insertRole(@Validated @RequestBody RoleVo vo, BindingResult bindingResult,
                              @LoginUser @ApiIgnore @RequestParam(required = false) Long userId,
                              @Depart @ApiIgnore @RequestParam(required = false) Long departId) {
         logger.debug("insert role by userId:" + userId);
@@ -428,21 +427,16 @@ public class PrivilegeController {
             logger.debug("validate fail");
             return returnObject;
         }
-        if(did.equals(departId)){
-            Role role = vo.createRole();
-            role.setCreatorId(userId);
-            role.setDepartId(departId);
-            role.setGmtCreate(LocalDateTime.now());
-            ReturnObject retObject = roleService.insertRole(role);
-            if (retObject.getData() != null) {
-                httpServletResponse.setStatus(HttpStatus.CREATED.value());
-                return Common.getRetObject(retObject);
-            } else {
-                return Common.getNullRetObj(new ReturnObject<>(retObject.getCode(), retObject.getErrmsg()), httpServletResponse);
-            }
-        }
-        else{
-            return Common.getNullRetObj(new ReturnObject<>(ResponseCode.FIELD_NOTVALID, String.format("部门id不匹配：" + did)), httpServletResponse);
+        Role role = vo.createRole();
+        role.setCreatorId(userId);
+        role.setDepartId(departId);
+        role.setGmtCreate(LocalDateTime.now());
+        ReturnObject retObject = roleService.insertRole(role);
+        if (retObject.getData() != null) {
+            httpServletResponse.setStatus(HttpStatus.CREATED.value());
+            return Common.getRetObject(retObject);
+        } else {
+            return Common.getNullRetObj(new ReturnObject<>(retObject.getCode(), retObject.getErrmsg()), httpServletResponse);
         }
     }
 
@@ -615,7 +609,7 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @PutMapping("/shops/{did}/adminusers/{id}/forbid")
+    @PutMapping("adminusers/{id}/forbid")
     public Object forbidUser(@PathVariable Long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("forbidUser: id = "+ id);
@@ -641,7 +635,7 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @PutMapping("/shops/{did}/adminusers/{id}/release")
+    @PutMapping("adminusers/{id}/release")
     public Object releaseUser(@PathVariable Long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("releaseUser: id = "+ id);
@@ -677,7 +671,6 @@ public class PrivilegeController {
         if(jwt.getData() == null){
             return ResponseUtil.fail(jwt.getCode(), jwt.getErrmsg());
         }else{
-            httpServletResponse.setStatus(HttpStatus.CREATED.value());
             return ResponseUtil.ok(jwt.getData());
         }
     }
@@ -698,7 +691,7 @@ public class PrivilegeController {
         if (success.getData() == null)  {
             return ResponseUtil.fail(success.getCode(), success.getErrmsg());
         }else {
-            return ResponseUtil.ok();
+            return ResponseCode.OK;
         }
     }
 

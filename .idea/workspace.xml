@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="35ec1cff-55dd-45e6-8707-e1530d6387d6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/cn/edu/xmu/ooad/util/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/cn/edu/xmu/ooad/util/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/cn/edu/xmu/ooad/util/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/cn/edu/xmu/ooad/util/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privilegeservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/privilegeservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privilegeservice/src/main/java/cn/edu/xmu/privilege/controller/PrivilegeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/privilegeservice/src/main/java/cn/edu/xmu/privilege/controller/PrivilegeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privilegeservice/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/privilegeservice/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privilegeservice/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/privilegeservice/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/runtest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/runtest.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/java/cn/edu/xmu/ooad/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/goods-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/goods-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/goods-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/goods-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/order-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/order-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/order-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/order-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/other-JSON.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/other-JSON.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/other-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/other-data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/main/resources/other-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/main/resources/other-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/LoginVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/LoginVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/BaiHaoyueTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ChenPinzhenTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/LiDiHanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/LiDiHanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/LiuFeiYanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/LiuFeiYanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ShaoLiangYingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ShaoLiangYingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ShenHuangJunTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ShenHuangJunTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/SongRunhanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/SongRunhanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/WangYiFeiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/WangYiFeiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/XiangSuXianTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/XiangSuXianTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/XuQingYunTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/XuQingYunTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/XuYueTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YangLeiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YangLeiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YangMingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YangMingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YueHaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/YueHaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/goods/ZhangYueTest1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/CaiXinluTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/CaiXinluTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ChenYixinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ChenYixinTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/HongXiaojieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/HongXiaojieTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/HuangJianhengTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/HuangJianhengTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LanZhibinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LanZhibinTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LiDongRuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LiDongRuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LiDongRuTest2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LiHanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/LiHanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/WangZhizhouTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/WangZhizhouTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/YujiaweiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/YujiaweiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ZhangXiangJunOrderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ZhangXiangJunOrderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ZhangXiangJunPaymentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/order/ZhangXiangJunPaymentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ChenXiaoruTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ChenXiaoruTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ChenyunyiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ChenyunyiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/FengZeyaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/FengZeyaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/HuJialeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/HuJialeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/LizezhengTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/PANDENGTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/QianQiuyanTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ShanXiaoyanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/ShanXiaoyanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangChenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangChenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangJintaiTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangWeiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangWeiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangxianweiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WangxianweiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WumengchenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/WumengchenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/XuGengchenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/XuGengchenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/YanJiqiangGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/YanJiqiangGatewayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/YuanShenyangTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/other/YuanShenyangTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/Auth003Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/Auth003Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/LiZihanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/LiZihanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/PrivilegeTest1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/SongRunhanTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/SongRunhanTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/UserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/WangWeiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/WangWeiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/YanJiQiangPriviligeNewUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/YanJiQiangPriviligeNewUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/ZhangXiangJunPrivTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/java/cn/edu/xmu/oomall/privilege/ZhangXiangJunPrivTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public-test/src/test/resources/auth003.json" beforeDir="false" afterPath="$PROJECT_DIR$/public-test/src/test/resources/auth003.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="11" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1lkcUnWNWbOhgzwAkPg5IAkGLo5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="ExpandSpringBootSpringBootSettingsPanel" value="false" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunConfigurationTargetLRU" value="&#10;4e175859-3d93-434d-9dba-667474512b43" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="yaml" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="F:/一些文件/新的/gateway" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15527344" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.run.dashboard.notification" value="false" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\IDEAProject\ooadPro9" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.edu.xmu.presale.service" />
+      <recent name="cn.edu.xmu.presale.dao" />
+      <recent name="cn.edu.xmu.groupon.dao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.FlashsaleServiceApplication">
+    <configuration name="goods-data" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/goods-data.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="goods-schema" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/goods-schema.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="order-data" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/order-data.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="order-schema" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/order-schema.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="other-data" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/other-data.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="other-schema" type="DatabaseScript">
+      <script-file value="$PROJECT_DIR$/public-test/src/main/resources/other-schema.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4e175859-3d93-434d-9dba-667474512b43" />
+      <method v="2" />
+    </configuration>
+    <configuration name="All in public-test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="public-test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiDiHanTest.getGrouponAllStates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="public-test" />
+      <option name="PACKAGE_NAME" value="cn.edu.xmu.oomall.goods" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.xmu.oomall.goods.LiDiHanTest" />
+      <option name="METHOD_NAME" value="getGrouponAllStates" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PresaleServiceTest.createPresale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="presaleservice" />
+      <option name="PACKAGE_NAME" value="cn.edu.xmu.presale.service" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.xmu.presale.service.PresaleServiceTest" />
+      <option name="METHOD_NAME" value="createPresale" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XiangSuXianTest.getPresaleStates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="public-test" />
+      <option name="PACKAGE_NAME" value="cn.edu.xmu.oomall.goods" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.xmu.oomall.goods.XiangSuXianTest" />
+      <option name="METHOD_NAME" value="getPresaleStates" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XuYueTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="public-test" />
+      <option name="PACKAGE_NAME" value="cn.edu.xmu.oomall.goods" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.xmu.oomall.goods.XuYueTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="generaltimer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.timer.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="public-test" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.ooad.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="privilegegateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.privilegegateway.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FlashsaleServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="flashsaleservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.flashsale.FlashSaleServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GoodsServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="goodsservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.goods.GoodsServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrouponServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="grouponservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.groupon.GrouponServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="logservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.log.LogServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PresaleServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="presaleservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.presale.PresaleServiceApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrivilegeServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="privilegeservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.privilege.PrivilegeServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PublicTestApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="public-test" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.xmu.ooad.PublicTestApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Database Script.other-schema" />
+      <item itemvalue="Database Script.goods-data" />
+      <item itemvalue="Database Script.goods-schema" />
+      <item itemvalue="Database Script.order-data" />
+      <item itemvalue="Database Script.order-schema" />
+      <item itemvalue="Database Script.other-data" />
+      <item itemvalue="JUnit.LiDiHanTest.getGrouponAllStates" />
+      <item itemvalue="JUnit.XiangSuXianTest.getPresaleStates" />
+      <item itemvalue="JUnit.All in public-test" />
+      <item itemvalue="JUnit.PresaleServiceTest.createPresale" />
+      <item itemvalue="JUnit.XuYueTest" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="Spring Boot.Application (1)" />
+      <item itemvalue="Spring Boot.Application (2)" />
+      <item itemvalue="Spring Boot.FlashsaleServiceApplication" />
+      <item itemvalue="Spring Boot.GrouponServiceApplication" />
+      <item itemvalue="Spring Boot.LogServiceApplication" />
+      <item itemvalue="Spring Boot.PresaleServiceApplication" />
+      <item itemvalue="Spring Boot.PrivilegeServiceApplication" />
+      <item itemvalue="Spring Boot.PublicTestApp" />
+      <item itemvalue="Spring Boot.GoodsServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.XuYueTest" />
+        <item itemvalue="JUnit.PresaleServiceTest.createPresale" />
+        <item itemvalue="JUnit.All in public-test" />
+        <item itemvalue="JUnit.XiangSuXianTest.getPresaleStates" />
+        <item itemvalue="JUnit.LiDiHanTest.getGrouponAllStates" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35ec1cff-55dd-45e6-8707-e1530d6387d6" name="Default Changelist" comment="" />
+      <created>1608144555079</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608144555079</updated>
+      <workItem from="1608144560050" duration="2561000" />
+      <workItem from="1608172785366" duration="14754000" />
+      <workItem from="1608257954779" duration="53838000" />
+      <workItem from="1608437497679" duration="27984000" />
+      <workItem from="1608518147491" duration="35418000" />
+      <workItem from="1608597084302" duration="24335000" />
+      <workItem from="1608686725932" duration="44567000" />
+      <workItem from="1608778147194" duration="32114000" />
+      <workItem from="1608856017628" duration="52960000" />
+      <workItem from="1609039431279" duration="3885000" />
+      <workItem from="1609145709959" duration="15469000" />
+      <workItem from="1609221748129" duration="7640000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="512" y="192" key="FileChooserDialogImpl" timestamp="1609222253590">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state x="512" y="192" key="FileChooserDialogImpl/0.0.1463.874@0.0.1463.874" timestamp="1609222253590" />
+    <state width="1420" height="325" key="GridCell.Tab.0.bottom" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.0.bottom/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.0.center" timestamp="1609229823090">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.0.center/0.0.1463.874@0.0.1463.874" timestamp="1609229823090" />
+    <state width="1420" height="325" key="GridCell.Tab.0.left" timestamp="1609229823090">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.0.left/0.0.1463.874@0.0.1463.874" timestamp="1609229823090" />
+    <state width="1420" height="325" key="GridCell.Tab.0.right" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.0.right/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.1.bottom" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.1.bottom/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.1.center" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.1.center/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.1.left" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.1.left/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.1.right" timestamp="1609229823091">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.1.right/0.0.1463.874@0.0.1463.874" timestamp="1609229823091" />
+    <state width="1420" height="325" key="GridCell.Tab.2.bottom" timestamp="1609229823092">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.2.bottom/0.0.1463.874@0.0.1463.874" timestamp="1609229823092" />
+    <state width="1420" height="325" key="GridCell.Tab.2.center" timestamp="1609229823092">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.2.center/0.0.1463.874@0.0.1463.874" timestamp="1609229823092" />
+    <state width="1420" height="325" key="GridCell.Tab.2.left" timestamp="1609229823092">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.2.left/0.0.1463.874@0.0.1463.874" timestamp="1609229823092" />
+    <state width="1420" height="325" key="GridCell.Tab.2.right" timestamp="1609229823092">
+      <screen x="0" y="0" width="1463" height="874" />
+    </state>
+    <state width="1420" height="325" key="GridCell.Tab.2.right/0.0.1463.874@0.0.1463.874" timestamp="1609229823092" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grouponservice/src/main/java/cn/edu/xmu/groupon/dao/GrouponDao.java</url>
+          <line>127</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="this.CGLIB$CALLBACK_0" custom="cn.edu.xmu.presale.dao.PresaleDao" />
+        <watch expression="this.CGLIB$CALLBACK_0" custom="cn.edu.xmu.presale.dao.PresaleDao" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/public_test$FlashsaleServiceApplication.ic" NAME="FlashsaleServiceApplication Coverage Results" MODIFIED="1609225785567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

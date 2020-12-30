@@ -2,7 +2,10 @@ package cn.edu.xmu.flashsale.model.bo;
 
 import cn.edu.xmu.flashsale.model.po.FlashSaleItemPo;
 import cn.edu.xmu.flashsale.model.vo.FlashSaleRetItemVo;
+import cn.edu.xmu.flashsale.model.vo.GoodsSkuSimpleRetVo;
+import cn.edu.xmu.flashsale.model.vo.GoodsSkuVo;
 import cn.edu.xmu.ooad.model.VoObject;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -10,6 +13,8 @@ import java.time.LocalDateTime;
 /**
  * @author XC
  */
+
+@Data
 public class FlashSaleItem implements VoObject, Serializable {
     private Long id;
 
@@ -17,7 +22,9 @@ public class FlashSaleItem implements VoObject, Serializable {
 
     private Long goodsSkuId;
 
-    //private GoodsSkuSimpleRetVo goodsSku;
+    private Long goodsSKuId;
+
+    private GoodsSkuVo goodsSku;
 
     private Long price;
 
@@ -27,77 +34,11 @@ public class FlashSaleItem implements VoObject, Serializable {
 
     private LocalDateTime gmtModified;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getSaleId() {
-        return saleId;
-    }
-
-    public void setSaleId(Long saleId) {
-        this.saleId = saleId;
-    }
-
-    public Long getGoodsSkuId() {
-        return goodsSkuId;
-    }
-
-    public void setGoodsSkuId(Long goodsSkuId) {
-        this.goodsSkuId = goodsSkuId;
-    }
-
-    /**
-    public GoodsSkuSimpleRetVo getGoodsSku() {
-        return goodsSku;
-    }
-
-    public void setGoodsSku(GoodsSkuSimpleRetVo goodsSku) {
-        this.goodsSku = goodsSku;
-    }
-     */
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public LocalDateTime getGmtCreated() {
-        return gmtCreated;
-    }
-
-    public void setGmtCreated(LocalDateTime gmtCreated) {
-        this.gmtCreated = gmtCreated;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
-    public FlashSaleItem(FlashSaleItemPo flashSaleItemPo) {
+    public FlashSaleItem(FlashSaleItemPo flashSaleItemPo, GoodsSkuVo goodsSku) {
         this.id = flashSaleItemPo.getId();
         this.saleId = flashSaleItemPo.getSaleId();
         this.gmtCreated = flashSaleItemPo.getGmtCreate();
-        this.goodsSkuId = flashSaleItemPo.getGoodsSkuId();
+        this.goodsSku = null;
         this.gmtModified = flashSaleItemPo.getGmtModified();
         this.price = flashSaleItemPo.getPrice();
         this.quantity = flashSaleItemPo.getQuantity();
@@ -105,14 +46,14 @@ public class FlashSaleItem implements VoObject, Serializable {
 
     @Override
     public Object createVo() {
-        FlashSaleRetItemVo flashSaleItemVo = new FlashSaleRetItemVo();
-        flashSaleItemVo.setId(this.id);
-        flashSaleItemVo.setGmtCreated(this.gmtCreated);
-        flashSaleItemVo.setGmtModified(this.gmtModified);
-        flashSaleItemVo.setPrice(this.price);
-        flashSaleItemVo.setQuantity(this.quantity);
-        flashSaleItemVo.setGoodsSkuId(this.goodsSkuId);
-        return flashSaleItemVo;
+        FlashSaleRetItemVo flashSaleRetItemVo = new FlashSaleRetItemVo();
+        flashSaleRetItemVo.setId(this.id);
+        flashSaleRetItemVo.setGmtCreated(this.gmtCreated);
+        flashSaleRetItemVo.setGmtModified(this.gmtModified);
+        flashSaleRetItemVo.setPrice(this.price);
+        flashSaleRetItemVo.setQuantity(this.quantity);
+        flashSaleRetItemVo.setGoodsSku(this.goodsSku);
+        return flashSaleRetItemVo;
     }
 
     @Override

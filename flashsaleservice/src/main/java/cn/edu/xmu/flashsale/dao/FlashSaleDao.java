@@ -48,17 +48,16 @@ public class FlashSaleDao implements InitializingBean {
         return flashSalePo;
     }
 
-    /**
     public List<FlashSalePo> getFlashSaleByTimeSegmentId(Long timeSegmentId) {
         FlashSalePoExample flashSalePoExample = new FlashSalePoExample();
         FlashSalePoExample.Criteria criteria = flashSalePoExample.createCriteria();
         criteria.andTimeSegIdEqualTo(timeSegmentId);
         return flashSalePoMapper.selectByExample(flashSalePoExample);
     }
-     */
 
     /**
      * 平台管理员在某个时段下新建秒杀
+     *
      * @param id
      * @param flashSaleSimpleVo
      * @return
@@ -67,7 +66,7 @@ public class FlashSaleDao implements InitializingBean {
         FlashSalePo flashSalePo = null;
         LocalDateTime today = LocalDateTime.now();
         if (flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.now()) < 0
-            || flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 23, 59, 59)) < 0)
+                || flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 23, 59, 59)) < 0)
             return new ReturnObject(ResponseCode.FIELD_NOTVALID);
         TimeSegmentPo timeSegmentPo = timeSegmentPoMapper.selectByPrimaryKey(id);
         if (timeSegmentPo == null)
@@ -101,6 +100,7 @@ public class FlashSaleDao implements InitializingBean {
 
     /**
      * 管理员修改秒杀活动
+     *
      * @param id
      * @param flashSaleSimpleVo
      * @return
@@ -118,33 +118,24 @@ public class FlashSaleDao implements InitializingBean {
             return new ReturnObject(ResponseCode.FIELD_NOTVALID);
         }
         if (flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.now()) < 0
-            || flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 23, 59, 59)) < 0)
+                || flashSaleSimpleVo.getFlashDate().compareTo(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 23, 59, 59)) < 0)
             return new ReturnObject(ResponseCode.FIELD_NOTVALID);
         flashSalePo.setFlashDate(flashSaleSimpleVo.getFlashDate());
         flashSalePo.setGmtModified(LocalDateTime.now());
         //if (flashSalePoMapper.updateByPrimaryKeySelective(flashSalePo) == 0)
-            //return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
+        //return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
         int flag;
-        try {
-            flag = flashSalePoMapper.updateByPrimaryKeySelective(flashSalePo);
-            if (flag == 0) {
-                logger.info("FlashSale " + id + " is not exist.");
-                return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
-            }
-        } catch (DataAccessException e) {
-            logger.error("Database Error: " + e.getMessage());
-            return new ReturnObject<>(ResponseCode.INTERNAL_SERVER_ERR,
-                    String.format("Database Error: " + e.getMessage()));
-        } catch (Exception e) {
-            logger.error("Unknown Error: " + e.getMessage());
-            return new ReturnObject<>(ResponseCode.INTERNAL_SERVER_ERR,
-                    String.format("Unknown Error: " + e.getMessage()));
+        flag = flashSalePoMapper.updateByPrimaryKeySelective(flashSalePo);
+        if (flag == 0) {
+            logger.info("FlashSale " + id + " is not exist.");
+            return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
         }
         return new ReturnObject();
     }
 
     /**
      * 平台管理员向秒杀活动添加商品SKU
+     *
      * @param id
      * @param flashSaleInsertVo
      * @return
@@ -154,13 +145,14 @@ public class FlashSaleDao implements InitializingBean {
         flashSaleItemPo.setSaleId(id);
         flashSaleItemPo.setGmtCreate(LocalDateTime.now());
         int flag;
-        ReturnObject returnObject = new ReturnObject(ResponseCode.OK);
         try {
-            flag = flashSaleItemPoMapper.insert(flashSaleItemPo);;
+            flag = flashSaleItemPoMapper.insert(flashSaleItemPo);
+            ;
             if (flag == 0) {
                 logger.info("FlashSale " + id + " is not exist.");
                 return new ReturnObject(ResponseCode.RESOURCE_ID_NOTEXIST);
             }
+
         } catch (DataAccessException e) {
             logger.error("Database Error: " + e.getMessage());
             return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR, String.format("Database Error: " + e.getMessage()));
@@ -168,11 +160,12 @@ public class FlashSaleDao implements InitializingBean {
             logger.error("Unknown Error: " + e.getMessage());
             return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR, String.format("Unknown Error: " + e.getMessage()));
         }
-        return returnObject;
+        return new ReturnObject<>(flashSaleItemPo);
     }
 
     /**
      * 平台管理员在秒杀活动删除商品SKU
+     *
      * @param itemId
      * @return
      */
@@ -183,6 +176,7 @@ public class FlashSaleDao implements InitializingBean {
 
     /**
      * 通过修改预售活动的状态实现对秒杀的删除、上线、下线
+     *
      * @param did
      * @param id
      * @param state
@@ -216,6 +210,7 @@ public class FlashSaleDao implements InitializingBean {
             return new ReturnObject(ResponseCode.FIELD_NOTVALID);
         FlashSalePo flashSalePo1 = new FlashSalePo();
         flashSalePo1.setState(state);
+        flashSalePo1.setId(id);
         int flag;
         ReturnObject returnObject = new ReturnObject(ResponseCode.OK);
         try {
@@ -236,6 +231,7 @@ public class FlashSaleDao implements InitializingBean {
 
     /**
      * 分别获得日期和时间
+     *
      * @param flashDate
      * @param flashTime
      * @return
@@ -247,6 +243,7 @@ public class FlashSaleDao implements InitializingBean {
 
     /**
      * 查看当前秒杀
+     *
      * @param id
      * @param flashDate
      * @return
@@ -272,13 +269,14 @@ public class FlashSaleDao implements InitializingBean {
             return new ReturnObject<>(ResponseCode.INTERNAL_SERVER_ERR,
                     String.format("Unknown Error: " + e.getMessage()));
         }
-        if(flashSalePos == null || flashSalePos.size() == 0)
+        if (flashSalePos == null || flashSalePos.size() == 0)
             return new ReturnObject<Boolean>(false);
         return new ReturnObject<Boolean>(true);
     }
 
     /**
      * 按照id查询秒杀活动
+     *
      * @param flashSaleId
      * @return
      */
@@ -302,7 +300,7 @@ public class FlashSaleDao implements InitializingBean {
         if (flashSalePo == null)
             return new ReturnObject(ResponseCode.RESOURCE_ID_NOTEXIST);
         if (expectState != null && flashSalePo.getState() != expectState)
-            return new ReturnObject(ResponseCode.FIELD_NOTVALID);
+            return new ReturnObject(ResponseCode.ACTIVITYALTER_INVALID);
         return new ReturnObject(ResponseCode.OK);
     }
 

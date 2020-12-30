@@ -17,8 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 /**
  * @author XC
@@ -28,7 +31,6 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping(value = "", produces = "application/json;charset=UTF-8")
 @Slf4j
-
 public class FlashSaleController {
     private static final Logger logger = LoggerFactory.getLogger(FlashSaleController.class);
 
@@ -76,11 +78,11 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/timesegments/{id}/flashsales")
+    @PostMapping(path = "/shops/{did}/timesegments/{id}/flashsales")
     public Object createFlashSaleByTimeSegId(
             @PathVariable("did") Long did,
             @PathVariable("id") String id,
-            @RequestBody FlashSaleSimpleVo flashSaleSimpleVo,
+            @RequestBody @Valid FlashSaleSimpleVo flashSaleSimpleVo,
             BindingResult bindingResult
     ) {
         logger.debug("Create Flash Sale in a Time Segment (createFlashSaleByTimeSegId)");
@@ -97,16 +99,15 @@ public class FlashSaleController {
      * @return
      */
     @ApiOperation(value = "获取当前时段秒杀列表，响应式API，会多次返回")
-    @ApiImplicitParams({})
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/flashsales/current")
-    public Object getCurrentFlashSale() {
+    @GetMapping(path = "/flashsales/current")
+    public Flux<FlashSaleRetItemVo> getCurrentFlashSale() {
         // To be implement
         logger.debug("Get Flash Sale in Details (getFlashSaleDetails)");
-        //return flashSaleService.getFlashSaleInDetail(id).map(x -> (FlashSaleRetItemVo) x.createVo());
-        return new Object();
+        return flashSaleService.getCurrentFlashSale(LocalDateTime.now()).map(x -> (FlashSaleRetItemVo) x.createVo());
+        //return new Object();
     }
 
     /**
@@ -129,7 +130,7 @@ public class FlashSaleController {
             @PathVariable("did") Long did,
             @PathVariable("id") Long id
     ) {
-        ReturnObject returnObject = flashSaleService.deletaFlashSale(did, id);
+        ReturnObject returnObject = flashSaleService.deleteFlashSale(did, id);
         if (returnObject.getCode() == ResponseCode.OK)
             return ResponseUtil.ok();
         return Common.decorateReturnObject(returnObject);
@@ -152,11 +153,11 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/flashsales/{id}")
+    @PutMapping(path = "/shops/{did}/flashsales/{id}")
     public Object updateFlashSale(
             @PathVariable("did") Long did,
             @PathVariable("id") Long id,
-            @RequestBody FlashSaleSimpleVo flashSaleSimpleVo,
+            @RequestBody @Valid FlashSaleSimpleVo flashSaleSimpleVo,
             BindingResult bindingResult
     ) {
         logger.debug("Update Flash Sale (updateFlashSale)");
@@ -184,7 +185,7 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/flashsales/{id}/onshelves")
+    @PutMapping(path = "/shops/{did}/flashsales/{id}/onshelves")
     public Object flashSaleOnSheleves(
             @PathVariable("did") Long did,
             @PathVariable("id") Long id
@@ -210,7 +211,7 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/flashsales/{id}/offshelves")
+    @PutMapping(path = "/shops/{did}/flashsales/{id}/offshelves")
     public Object flashSaleOffSheleves(
             @PathVariable("did") Long did,
             @PathVariable("id") Long id
@@ -238,11 +239,11 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/flashsales/{id}/flashitems")
+    @PostMapping(path = "/shops/{did}/flashsales/{id}/flashitems")
     public Object insertSKUIntoFlashSale(
             @PathVariable("did") Long did,
             @PathVariable("id") Long id,
-            @RequestBody FlashSaleInsertVo flashSaleInsertVo,
+            @RequestBody @Valid FlashSaleInsertVo flashSaleInsertVo,
             BindingResult bindingResult
     ) {
         logger.debug("Insert SKU into Flash Sale (insertSKUIntoFlashSale)");
@@ -272,17 +273,13 @@ public class FlashSaleController {
     @ApiResponses({
             @ApiResponse(code = 0, message = "成功")
     })
-    @RequestMapping(path = "/shops/{did}/flashsales/{fid}/flashitems/{id}")
+    @DeleteMapping(path = "/shops/{did}/flashsales/{fid}/flashitems/{id}")
     public Object deleteSKUFromFlashSale(
             @PathVariable("did") Long did,
             @PathVariable("fid") Long fid,
-            @PathVariable("id") Long id,
-            BindingResult bindingResult
+            @PathVariable("id") Long id
     ) {
         logger.debug("Delete SKU from Flash Sale (insertSKUIntoFlashSale)");
-        Object object = Common.processFieldErrors(bindingResult, httpServletResponse);
-        if (null != object)
-            return object;
         ReturnObject returnObject = flashSaleService.deleteSKUFromFlashSale(did, fid, id);
         if (returnObject.getCode() == ResponseCode.OK)
             return new ResponseEntity(ResponseUtil.ok(returnObject.getData()), HttpStatus.CREATED);

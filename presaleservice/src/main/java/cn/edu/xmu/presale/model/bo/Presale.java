@@ -3,6 +3,7 @@ package cn.edu.xmu.presale.model.bo;
 import cn.edu.xmu.ooad.model.VoObject;
 import cn.edu.xmu.presale.model.po.PresalePo;
 import cn.edu.xmu.presale.model.vo.PresaleVo;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author XC
  */
 
+@Data
 public class Presale implements VoObject {
     private Long id;
 
@@ -38,110 +40,6 @@ public class Presale implements VoObject {
     private LocalDateTime gmtCreated;
 
     private LocalDateTime gmtModified;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(LocalDateTime beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public LocalDateTime getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(LocalDateTime payTime) {
-        this.payTime = payTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public Byte getState() {
-        return state;
-    }
-
-    public void setState(Byte state) {
-        this.state = state;
-    }
-
-    public Long getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
-
-    public Long getGoodsSKUId() {
-        return goodsSKUId;
-    }
-
-    public void setGoodsSKUId(Long goodsSKUId) {
-        this.goodsSKUId = goodsSKUId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Long getAdvancePayPrice() {
-        return advancePayPrice;
-    }
-
-    public void setAdvancePayPrice(Long advancePayPrice) {
-        this.advancePayPrice = advancePayPrice;
-    }
-
-    public Long getRestPayPrice() {
-        return restPayPrice;
-    }
-
-    public void setRestPayPrice(Long restPayPrice) {
-        this.restPayPrice = restPayPrice;
-    }
-
-    public LocalDateTime getGmtCreated() {
-        return gmtCreated;
-    }
-
-    public void setGmtCreated(LocalDateTime gmtCreated) {
-        this.gmtCreated = gmtCreated;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
 
     @Override
     public Object createVo() {

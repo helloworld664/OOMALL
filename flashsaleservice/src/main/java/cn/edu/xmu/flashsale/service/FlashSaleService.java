@@ -3,8 +3,10 @@ package cn.edu.xmu.flashsale.service;
 import cn.edu.xmu.flashsale.dao.FlashSaleDao;
 import cn.edu.xmu.flashsale.dao.FlashSaleItemDao;
 import cn.edu.xmu.flashsale.mapper.FlashSalePoMapper;
+import cn.edu.xmu.flashsale.mapper.GoodsSkuPoMapper;
 import cn.edu.xmu.flashsale.model.bo.FlashSale;
 import cn.edu.xmu.flashsale.model.bo.FlashSaleItem;
+import cn.edu.xmu.flashsale.model.bo.GoodsSku;
 import cn.edu.xmu.flashsale.model.po.FlashSaleItemPo;
 import cn.edu.xmu.flashsale.model.po.FlashSalePo;
 import cn.edu.xmu.flashsale.model.vo.FlashSaleInsertVo;
@@ -13,15 +15,18 @@ import cn.edu.xmu.flashsale.model.vo.TimeSegmentVo;
 import cn.edu.xmu.ooad.util.ResponseCode;
 import cn.edu.xmu.ooad.util.ResponseUtil;
 import cn.edu.xmu.ooad.util.ReturnObject;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Flux;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,8 +52,14 @@ public class FlashSaleService {
     @Autowired
     private FlashSaleItemDao flashSaleItemDao;
 
-    //@Autowired
-    //private ReactiveRedisTemplate<String, Serializable> reactiveRedisTemplate;
+    @Resource
+    private ReactiveRedisTemplate<String, Serializable> reactiveRedisTemplate;
+
+    @Autowired
+    private GoodsSkuPoMapper goodsSkuPoMapper;
+
+    @DubboReference(check = false, version = "2.2.0")
+    GoodsService goodsService;
 
     public Flux<FlashSaleItem> getFlashSaleInDetail(Long segId) {
         String segIdStr = "seg_" + segId;
@@ -60,6 +71,28 @@ public class FlashSaleService {
 
             }
         };
+    }
+
+    @Transactional
+    public Flux<FlashSaleItem> getCurrentFlashSale(LocalDateTime localDateTime) {
+        String currentNow = "flashSaleNow_" + localDateTime.toString();
+        if (redisTemplate.opsForSet().size(currentNow) == 0) {
+            TimeSegmentVo timeSegmentPo = new TimeSegmentVo();
+            timeSegmentPo.setId(9L);
+            if (timeSegmentPo != null) {
+                List<FlashSalePo> flashSalePos = flashSaleDao.getFlashSaleByTimeSegmentId(timeSegmentPo.getId());
+                if (flashSalePos.size() != 0) {
+                    FlashSalePo flashSalePo = flashSalePos.get(1);
+                    List<FlashSaleItemPo> flashSaleItemPoFromSaleId = flashSaleItemDao.getFlashSaleItemPoFromSaleId(flashSalePo.getId());
+                    for (FlashSaleItemPo flashSaleItemPo : flashSaleItemPoFromSaleId) {
+                        //GoodsSku goodsSku = goodsService.getSkuById(flashSaleItemPo.getGoodsSkuId());
+                        FlashSaleItem flashSaleItem = new FlashSaleItem(flashSaleItemPo, null);
+                        redisTemplate.opsForSet().add(currentNow, flashSaleItem);
+                    }
+                }
+            }
+        }
+        return reactiveRedisTemplate.opsForSet().members(currentNow).map(x -> (FlashSaleItem) x);
     }
 
     /**
@@ -90,7 +123,7 @@ public class FlashSaleService {
         if (flashSalePo == null)
             return new ReturnObject<>(ResponseCode.RESOURCE_ID_NOTEXIST);
         if (flashSalePo.getFlashDate().compareTo(LocalDateTime.now()) < 0)
-            return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
+            return new ReturnObject(ResponseCode.ACTIVITYALTER_INVALID);
         if (flashSalePo.getState() == FlashSale.State.ONSHELVES.getCode())
             return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
         flashSaleSimpleVo.setFlashDate(flashSaleDao.createRealTime(flashSaleSimpleVo.getFlashDate(), LocalDateTime.of(2020, 01, 01, 0, 0, 0)));
@@ -125,7 +158,8 @@ public class FlashSaleService {
         }
         ReturnObject<FlashSaleItemPo> returnObject = flashSaleDao.insertSKUIntoFlashSale(id, flashSaleInsertVo);
         FlashSaleItemPo flashSaleItemPo = returnObject.getData();
-        FlashSaleItem flashSaleItem = new FlashSaleItem(flashSaleItemPo);
+        //GoodsSku goodsSku = goodsService.getSkuById(flashSaleItemPo.getGoodsSkuId());
+        FlashSaleItem flashSaleItem = new FlashSaleItem(flashSaleItemPo, null);
         return new ReturnObject(flashSaleItem);
     }
 
@@ -153,7 +187,7 @@ public class FlashSaleService {
      * @param id
      * @return
      */
-    public ReturnObject deletaFlashSale(Long did, Long id) {
+    public ReturnObject deleteFlashSale(Long did, Long id) {
         ReturnObject returnObject = flashSaleDao.updateState(did, id, FlashSale.State.DELETED.getCode());
         if (returnObject == null)
             return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR);
@@ -183,9 +217,6 @@ public class FlashSaleService {
      */
     public ReturnObject flashSaleOffShelves(Long did, Long id) {
         ReturnObject returnObject = flashSaleDao.updateState(did, id, FlashSale.State.OFFSHELVES.getCode());
-        if (returnObject == null)
-            return new ReturnObject(ResponseCode.INTERNAL_SERVER_ERR, ResponseCode.IMG_FORMAT_ERROR.getMessage());
-        else
             return returnObject;
     }
 }

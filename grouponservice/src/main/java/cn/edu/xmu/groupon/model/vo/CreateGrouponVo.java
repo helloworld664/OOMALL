@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
  * @author XC
  */
 
+@Data
 public class CreateGrouponVo {
     private String strategy;
 
@@ -19,30 +20,6 @@ public class CreateGrouponVo {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
-
-    public String getStrategy() {
-        return strategy;
-    }
-
-    public void setStrategy(String strategy) {
-        this.strategy = strategy;
-    }
-
-    public LocalDateTime getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(LocalDateTime beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
 
     public GrouponPo createGroupon() {
         GrouponPo grouponPo = new GrouponPo();

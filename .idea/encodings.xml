@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/flashsaleservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/generaltimer-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/generaltimer-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/generaltimer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/goodsservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/grouponservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/logservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/presaleservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/privilegegateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/privilegeservice-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/privilegeservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public-test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shopservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shopservice/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

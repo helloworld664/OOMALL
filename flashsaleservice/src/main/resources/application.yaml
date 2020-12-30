@@ -18,15 +18,15 @@ spring:
   cloud:
     nacos:
       username: nacos
-      password: 1-6123
+      password: 1-6123a
       discovery:
         server-addr: localhost:8848
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    initialization-mode: always
-    schema: classpath:schema.sql
-    data: classpath:testdata.sql
+#    initialization-mode: always
+ #   schema: classpath:schema.sql
+  #  data: classpath:testdata.sql
     druid:
       #初始化时建立物理连接的个数
       initial-size: 3

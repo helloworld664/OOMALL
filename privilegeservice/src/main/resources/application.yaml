@@ -5,7 +5,7 @@ management:
         include: "*"
 
 server:
-  port: 8081
+  port: 8089
   tomcat:
     threads:
       max: 1000
@@ -20,7 +20,7 @@ dubbo:
     qos-accept-foreign-ip: false
   # 配置注册中心
   registry:
-    address: nacos://47.115.162.144:8848
+    address: nacos://localhost:8848
   # 设置协议-协议由提供方指定消费方被动接受
   protocol:
     name: dubbo
@@ -48,9 +48,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    initialization-mode: never
-    schema: classpath:schema.sql
-    data: classpath:testdata.sql
     druid:
       #初始化时建立物理连接的个数
       initial-size: 3
@@ -103,9 +100,9 @@ privilegeservice:
   lockerExpireTime: 30
   #dav信息配置
   dav:
-    username: other
-    password: 123456
-    baseUrl: http://106.52.203.83/webdav/
+    username: oomall
+    password: admin
+    baseUrl: http://172.16.1.66:8081/img/
   user:
     # user的权限字在Redis中失效秒数
     expiretime: 600

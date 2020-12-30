@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flashsaleservice/flashsaleservice.iml" filepath="$PROJECT_DIR$/flashsaleservice/flashsaleservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generaltimer/generaltimer.iml" filepath="$PROJECT_DIR$/generaltimer/generaltimer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generaltimer-client/generaltimer-client.iml" filepath="$PROJECT_DIR$/generaltimer-client/generaltimer-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generaltimer-test/generaltimer-test.iml" filepath="$PROJECT_DIR$/generaltimer-test/generaltimer-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/goodsservice/goodsservice.iml" filepath="$PROJECT_DIR$/goodsservice/goodsservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouponservice/grouponservice.iml" filepath="$PROJECT_DIR$/grouponservice/grouponservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logservice/logservice.iml" filepath="$PROJECT_DIR$/logservice/logservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oomall.iml" filepath="$PROJECT_DIR$/oomall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/presaleservice/presaleservice.iml" filepath="$PROJECT_DIR$/presaleservice/presaleservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegegateway/privilegegateway.iml" filepath="$PROJECT_DIR$/privilegegateway/privilegegateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegeservice/privilegeservice.iml" filepath="$PROJECT_DIR$/privilegeservice/privilegeservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privilegeservice-client/privilegeservice-client.iml" filepath="$PROJECT_DIR$/privilegeservice-client/privilegeservice-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/public-test/public-test.iml" filepath="$PROJECT_DIR$/public-test/public-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shopservice/shopservice.iml" filepath="$PROJECT_DIR$/shopservice/shopservice.iml" />
+    </modules>
+  </component>
+</project>

@@ -15,6 +15,8 @@ public class FlashSaleRetItemVo {
 
     private Long goodsSkuId;
 
+    private GoodsSkuVo goodsSku;
+
     private Long price;
 
     private Integer quantity;
