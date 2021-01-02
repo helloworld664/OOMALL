@@ -31,10 +31,10 @@ import java.time.LocalDateTime;
 @SpringBootTest(classes = PublicTestApp.class)
 public class XuYueTest {
 
-    @Value("127.0.0.1:8082/")
+    @Value("${public-test.managementgate}")
     private String managementGate;
 
-    @Value("127.0.0.1:8082/")
+    @Value("${public-test.mallgate}")
     private String mallGate;
 
     private WebTestClient manageClient;
@@ -75,87 +75,13 @@ public class XuYueTest {
                 .header("authorization", token)
                 .bodyValue(requireJson)                 ;
         responseBuffer = res.exchange().expectHeader().contentType("application/json;charset=UTF-8")
-                .expectStatus().isBadRequest()
+                .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.errno").isEqualTo(ResponseCode.FIELD_NOTVALID.getCode())
-                .jsonPath("$.data").doesNotExist()
-                .returnResult()
-                .getResponseBodyContent();
-
-    }
-    @Test
-    /**
-     * 加入一个预售活动  开始时间小于当前时间
-     */
-    public void addPresaleActivity2() throws Exception{
-        LocalDateTime time = LocalDateTime.now();
-        LocalDateTime beginTime = time.minusHours(1);
-        LocalDateTime payTime = time.plusHours(2);
-        LocalDateTime endTime = time.plusHours(3);
-        String token = login("13088admin", "123456");
-        byte[] responseBuffer = null;
-        String requireJson = "{ \"name\": \"预售活动\", \"advancePayPrice\": 20, \"restPayPrice\": 3000, \"quantity\": 10, \"beginTime\": \"2019-01-09T15:55:18\",    \"payTime\": \"2022-01-09T16:55:18\",\"endTime\": \"2022-01-09T17:55:18\"}";
-        WebTestClient.RequestHeadersSpec res = manageClient.post().uri("/shops/1/skus/2/presales")
-                .header("authorization", token)
-                .bodyValue(requireJson);
-        responseBuffer = res.exchange().expectHeader().contentType("application/json;charset=UTF-8")
-                .expectStatus().isBadRequest()
-                .expectBody()
-                .jsonPath("$.errno").isEqualTo(ResponseCode.FIELD_NOTVALID.getCode())
-                .jsonPath("$.data").doesNotExist()
-                .returnResult()
-                .getResponseBodyContent();
-
-    }
-    @Test
-    /**
-     * 加入一个预售活动  支付时间小于当前时间
-     */
-    public void addPresaleActivity3() throws Exception{
-        LocalDateTime time = LocalDateTime.now();
-        LocalDateTime beginTime = time.plusHours(1);
-        LocalDateTime payTime = time.minusHours(2);
-        LocalDateTime endTime = time.plusHours(3);
-        String token = login("13088admin", "123456");
-        byte[] responseBuffer = null;
-        String requireJson = "{ \"name\": \"预售活动\", \"advancePayPrice\": 20, \"restPayPrice\": 3000, \"quantity\": 10, \"beginTime\": \"2022-01-09T15:55:18\",    \"payTime\": \"2019-01-09T16:55:18\",\"endTime\": \"2022-01-09T17:55:18\"}";
-        WebTestClient.RequestHeadersSpec res = manageClient.post().uri("/shops/1/skus/2/presales")
-                .header("authorization", token)
-                .bodyValue(requireJson);
-        responseBuffer = res.exchange().expectHeader().contentType("application/json;charset=UTF-8")
-                .expectStatus().isBadRequest()
-                .expectBody()
-                .jsonPath("$.errno").isEqualTo(ResponseCode.FIELD_NOTVALID.getCode())
-                .jsonPath("$.data").doesNotExist()
                 .returnResult()
                 .getResponseBodyContent();
 
     }
 
-    @Test
-    /**
-     * 加入一个预售活动  尾款未负数
-     */
-    public void addPresaleActivity4() throws Exception{
-        LocalDateTime time = LocalDateTime.now();
-        LocalDateTime beginTime = time.plusHours(1);
-        LocalDateTime payTime = time.plusHours(2);
-        LocalDateTime endTime = time.plusHours(3);
-        String token = login("13088admin", "123456");
-        byte[] responseBuffer = null;
-        String requireJson = "{ \"name\": \"预售活动\", \"advancePayPrice\": 20, \"restPayPrice\": -3000, \"quantity\": 10, \"beginTime\": \"2022-01-09T15:55:18\",    \"payTime\": \"2022-01-09T16:55:18\",\"endTime\": \"2022-01-09T17:55:18\"}";
-        WebTestClient.RequestHeadersSpec res = manageClient.post().uri("/shops/1/skus/2/presales")
-                .header("authorization", token)
-                .bodyValue(requireJson);
-        responseBuffer = res.exchange().expectHeader().contentType("application/json;charset=UTF-8")
-                .expectStatus().isBadRequest()
-                .expectBody()
-                .jsonPath("$.errno").isEqualTo(ResponseCode.FIELD_NOTVALID.getCode())
-                .jsonPath("$.data").doesNotExist()
-                .returnResult()
-                .getResponseBodyContent();
-
-    }
 
     @Test
     /**

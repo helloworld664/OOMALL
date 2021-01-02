@@ -24,12 +24,14 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-07 10:37
+ * Modified at 2021-01-01 02:51
  */
 
 @Api(value = "秒杀服务", tags = "flashsale")
 @RestController
-@RequestMapping(value = "", produces = "application/json;charset=UTF-8")
+@RequestMapping(value = "flashsale", produces = "application/json;charset=UTF-8")
 @Slf4j
 public class FlashSaleController {
     private static final Logger logger = LoggerFactory.getLogger(FlashSaleController.class);
@@ -104,10 +106,8 @@ public class FlashSaleController {
     })
     @GetMapping(path = "/flashsales/current")
     public Flux<FlashSaleRetItemVo> getCurrentFlashSale() {
-        // To be implement
         logger.debug("Get Flash Sale in Details (getFlashSaleDetails)");
         return flashSaleService.getCurrentFlashSale(LocalDateTime.now()).map(x -> (FlashSaleRetItemVo) x.createVo());
-        //return new Object();
     }
 
     /**

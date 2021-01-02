@@ -133,6 +133,7 @@ public class Common {
         ResponseCode code = returnObject.getCode();
         switch (code){
             case OK:
+
                 PageInfo<VoObject> objs = returnObject.getData();
                 if (objs != null){
                     List<Object> voObjs = new ArrayList<>(objs.getList().size());
@@ -188,11 +189,6 @@ public class Common {
                 return new ResponseEntity(
                         ResponseUtil.fail(returnObject.getCode(), returnObject.getErrmsg()),
                         HttpStatus.INTERNAL_SERVER_ERROR);
-            case RESOURCE_ID_OUTSCOPE:
-                // 504
-                return new ResponseEntity(
-                        ResponseUtil.fail(returnObject.getCode(), returnObject.getErrmsg()),
-                        HttpStatus.FORBIDDEN);
             case OK:
                 // 200: 无错误
                 Object data = returnObject.getData();

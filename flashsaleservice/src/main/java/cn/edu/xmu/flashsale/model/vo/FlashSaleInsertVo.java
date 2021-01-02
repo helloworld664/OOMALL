@@ -8,7 +8,9 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-07 11:20
+ * Modified at 2020-12-13 10:06
  */
 
 @Data
@@ -19,30 +21,6 @@ public class FlashSaleInsertVo implements VoObject {
     private Long price;
 
     private Integer quantity;
-
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     public FlashSaleItemPo flashSaleInsertVo() {
         FlashSaleItemPo flashSaleItemPo = new FlashSaleItemPo();

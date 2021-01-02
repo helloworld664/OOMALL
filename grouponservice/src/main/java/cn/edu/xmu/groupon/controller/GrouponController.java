@@ -29,7 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-02 13:11
+ * Modified at 2020-12-26 00:09
  */
 
 @Api(value = "团购服务", tags = "groupon")
@@ -168,7 +170,7 @@ public class GrouponController {
             @PathVariable("id") Long id,
             @RequestBody CreateGrouponVo createGrouponVo,
             BindingResult bindingResult
-            ) {
+    ) {
         logger.debug("Create Groupon: shopId = " + shopId + ", spuId = " + id);
         httpServletResponse.setContentType("application/json;charset=utf-8");
         Object object = Common.processFieldErrors(bindingResult, httpServletResponse);
@@ -334,29 +336,29 @@ public class GrouponController {
      * 根据商铺ID查询团购活动
      * @return Object
      * @author XC
-    @ApiOperation(value = "查询shopId团购活动")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", dataType = "String", name = "authorization", value = "用户token", required = true),
-            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "timeline", value = "时间：0 还未开始的， 1 明天开始的，2 正在进行中的，3 已经结束的", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "spu_id", value = "根据spu_id查询", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "shopId", value = "根据shop id 查询", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "page", value = "页码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "pageSize", value = "每页数目", required = false)
-    })
-    @ApiResponses({
-            @ApiResponse(code = 0, message = "成功")
-    })
-    @GetMapping("/groupon/shop/{shopId}")
-    public Object getAllGroupons(
-            @PathVariable Long shopId
-    ) {
-        ReturnObject<GrouponPo> returnObject = grouponService.selectGrouponByShopId(shopId);
-        if(returnObject.getCode().equals(ResponseCode.RESOURCE_ID_NOTEXIST)){
-            return "error";
+     @ApiOperation(value = "查询shopId团购活动")
+     @ApiImplicitParams({
+     @ApiImplicitParam(paramType = "header", dataType = "String", name = "authorization", value = "用户token", required = true),
+     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "timeline", value = "时间：0 还未开始的， 1 明天开始的，2 正在进行中的，3 已经结束的", required = false),
+     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "spu_id", value = "根据spu_id查询", required = false),
+     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "shopId", value = "根据shop id 查询", required = false),
+     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "page", value = "页码", required = false),
+     @ApiImplicitParam(paramType = "query", dataType = "Integer", name = "pageSize", value = "每页数目", required = false)
+     })
+     @ApiResponses({
+     @ApiResponse(code = 0, message = "成功")
+     })
+     @GetMapping("/groupon/shop/{shopId}")
+     public Object getAllGroupons(
+     @PathVariable Long shopId
+     ) {
+     ReturnObject<GrouponPo> returnObject = grouponService.selectGrouponByShopId(shopId);
+     if(returnObject.getCode().equals(ResponseCode.RESOURCE_ID_NOTEXIST)){
+     return "error";
 
-        }else{
-            return returnObject;
-        }
-    }
+     }else{
+     return returnObject;
+     }
+     }
      */
 }

@@ -1,5 +1,11 @@
 package cn.edu.xmu.goods.model.bo;
 
+import cn.edu.xmu.goods.model.po.GoodsSkuPo;
+import cn.edu.xmu.goods.model.po.GoodsSpuPo;
+import cn.edu.xmu.goods.model.vo.SkuCreatVo;
+import cn.edu.xmu.goods.model.vo.SkuInputVo;
+import cn.edu.xmu.goods.model.vo.SkuRetVo;
+import cn.edu.xmu.ooad.model.VoObject;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -7,13 +13,47 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author XC
- */
-
 @Data
-public class GoodsSku implements Serializable {
+public class GoodsSku implements VoObject, Serializable {
+
+    public enum State {
+        UNPUBLISHED(0, "未上架"),
+        PUBLISHED(4, "上架"),
+        DELETED(6, "已删除");
+
+        private static final Map<Integer, State> stateMap;
+
+        static { //由类加载机制，静态块初始加载对应的枚举属性到map中，而不用每次取属性时，遍历一次所有枚举值
+            stateMap = new HashMap();
+            for (State enum1 : values()) {
+                stateMap.put(enum1.code, enum1);
+            }
+        }
+
+        private int code;
+        private String description;
+
+        State(int code, String description) {
+            this.code = code;
+            this.description = description;
+        }
+
+        public static State getTypeByCode(Integer code) {
+            return stateMap.get(code);
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+    }
+
     private Long id;
+
+    private Long goodsSpuId;
 
     private String skuSn;
 
@@ -29,165 +69,161 @@ public class GoodsSku implements Serializable {
 
     private Integer inventory;
 
+    private State state = State.UNPUBLISHED;
+
     private String detail;
+
+    private Boolean disabled;
 
     private LocalDateTime gmtCreate;
 
     private LocalDateTime gmtModified;
 
-    private Byte disabled;
-
-    private Long goodsSpuId;
-
-    private Byte statecode;
-
-    public Long getId() {
-        return id;
+    public GoodsSku(GoodsSkuPo goodsSkuPo, GoodsSpuPo goodsSpuPo) {
+        this.id = goodsSkuPo.getId();
+        this.goodsSpuId = goodsSpuPo.getId();
+        this.skuSn = goodsSkuPo.getSkuSn();
+        this.name = goodsSkuPo.getName();
+        this.originalPrice = goodsSkuPo.getOriginalPrice();
+        this.weight = goodsSkuPo.getWeight();
+        this.imageUrl = goodsSkuPo.getImageUrl();
+        this.inventory = goodsSkuPo.getInventory();
+        this.detail = goodsSkuPo.getDetail();
+        this.disabled = goodsSkuPo.getDisabled() == 0 ? false : true;
+        this.gmtCreate = goodsSkuPo.getGmtCreate();
+        this.gmtModified = goodsSkuPo.getGmtModified();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Object createVo() {
+        return new SkuRetVo(this);
     }
 
-    public String getSkuSn() {
-        return skuSn;
+    @Override
+    public Object createSimpleVo() {
+        return null;
     }
 
-    public void setSkuSn(String skuSn) {
-        this.skuSn = skuSn;
+    public GoodsSku(GoodsSkuPo po) {
+        this.id = po.getId();
+        this.goodsSpuId = po.getGoodsSpuId();
+        this.skuSn = po.getSkuSn();
+        this.name = po.getName();
+        this.originalPrice = po.getOriginalPrice();
+        this.configuration = po.getConfiguration();
+        this.weight = po.getWeight();
+        this.imageUrl = po.getImageUrl();
+        this.inventory = po.getInventory();
+        this.detail = po.getDetail();
+        this.disabled = po.getDisabled() == 0 ? false : true;
+        this.gmtCreate = po.getGmtCreate();
+        this.gmtModified = po.getGmtModified();
+    }
+
+    public GoodsSkuPo createUpdateStatePo(Long code) {
+        GoodsSkuPo goodsSkuPo = new GoodsSkuPo();
+        goodsSkuPo.setId(id);
+        goodsSkuPo.setState(code.byteValue());
+        goodsSkuPo.setGmtModified(LocalDateTime.now());
+        return goodsSkuPo;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Long originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public String getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(String configuration) {
-        this.configuration = configuration;
-    }
-
-    public Long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Integer getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Integer inventory) {
-        this.inventory = inventory;
-    }
-
     public String getDetail() {
         return detail;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public LocalDateTime getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(LocalDateTime gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
-    public Byte getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(Byte disabled) {
-        this.disabled = disabled;
+    public Long getId() {
+        return id;
     }
 
     public Long getGoodsSpuId() {
         return goodsSpuId;
     }
 
-    public void setGoodsSpuId(Long goodsSpuId) {
-        this.goodsSpuId = goodsSpuId;
+    public LocalDateTime getGmtModified() {
+        return gmtModified;
     }
 
-    public Byte getStatecode() {
-        return statecode;
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
     }
 
-    public void setStatecode(Byte statecode) {
-        this.statecode = statecode;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public enum State {
-        WAITING(0, "未上架"),
-        INVALID(4, "上架"),
-        DELETED(6, "已删除");
-
-        private static final Map<Integer, State> stateMap;
-
-        static { //由类加载机制，静态块初始加载对应的枚举属性到map中，而不用每次取属性时，遍历一次所有枚举值
-            stateMap = new HashMap();
-            for (GoodsSku.State enum1 : values()) {
-                stateMap.put(enum1.code, enum1);
-            }
-        }
-
-        private int code;
-        private String description;
-
-        State(int code, String description) {
-            this.code = code;
-            this.description = description;
-        }
-
-        public static GoodsSku.State getTypeByCode(Integer code) {
-            return stateMap.get(code);
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public String getDescription() {
-            return description;
-        }
+    public Boolean getDisabled() {
+        return disabled;
     }
 
-    public GoodsSku(){}
+    public Integer getInventory() {
+        return inventory;
+    }
 
+    public Long getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public String getConfiguration() {
+        return configuration;
+    }
+
+    public String getSkuSn() {
+        return skuSn;
+    }
+
+    public GoodsSkuPo createUpdatePo(SkuInputVo skuInputVo) {
+        GoodsSkuPo goodsSkuPo = new GoodsSkuPo();
+        goodsSkuPo.setId(id);
+        String nameEnc = goodsSkuPo == null ? null : skuInputVo.getName();
+        Long originalPriceEnc = skuInputVo.getOriginalPrice() == null ? null : skuInputVo.getOriginalPrice();
+        String configurationEnc = skuInputVo.getConfiguration() == null ? null : skuInputVo.getConfiguration();
+        Integer inventoryEnc = skuInputVo.getInventory() == null ? null : skuInputVo.getInventory();
+        Long weightEnc = skuInputVo.getWeight() == null ? null : skuInputVo.getWeight();
+        String detailEnc = skuInputVo.getDetail() == null ? null : skuInputVo.getDetail();
+        goodsSkuPo.setOriginalPrice(originalPriceEnc);
+        goodsSkuPo.setName(nameEnc);
+        goodsSkuPo.setDetail(detailEnc);
+        goodsSkuPo.setInventory(inventoryEnc);
+        goodsSkuPo.setWeight(weightEnc);
+        goodsSkuPo.setConfiguration(configurationEnc);
+        return goodsSkuPo;
+    }
+
+    public GoodsSkuPo createPo(SkuCreatVo skuCreatVo, Long spuId) {
+        GoodsSkuPo goodsSkuPo = new GoodsSkuPo();
+        String nameEnc = skuCreatVo.getName() == null ? null : skuCreatVo.getName();
+        String skusnEnc = skuCreatVo.getSn() == null ? null : skuCreatVo.getSn();
+        Long originalPriceEnc = skuCreatVo.getOriginalPrice() == null ? null : skuCreatVo.getOriginalPrice();
+        String configurationEnc = skuCreatVo.getConfiguration() == null ? null : skuCreatVo.getConfiguration();
+        Integer inventoryEnc = skuCreatVo.getInventory() == null ? null : skuCreatVo.getInventory();
+        String imageUrlEnc = skuCreatVo.getImageUrl() == null ? null : skuCreatVo.getImageUrl();
+        Long weightEnc = skuCreatVo.getWeight() == null ? null : skuCreatVo.getWeight();
+        String detailEnc = skuCreatVo.getDetail() == null ? null : skuCreatVo.getDetail();
+        goodsSkuPo.setOriginalPrice(originalPriceEnc);
+        goodsSkuPo.setName(nameEnc);
+        goodsSkuPo.setDetail(detailEnc);
+        goodsSkuPo.setInventory(inventoryEnc);
+        goodsSkuPo.setWeight(weightEnc);
+        goodsSkuPo.setImageUrl(imageUrlEnc);
+        goodsSkuPo.setWeight(weightEnc);
+        goodsSkuPo.setConfiguration(configurationEnc);
+        goodsSkuPo.setGmtCreate(LocalDateTime.now());
+        goodsSkuPo.setGoodsSpuId(spuId);
+        goodsSkuPo.setDisabled((byte) 0);
+        goodsSkuPo.setSkuSn(skusnEnc);
+        goodsSkuPo.setState((byte) 0);
+        return goodsSkuPo;
+    }
+
+    public GoodsSku() {
+    }
 }

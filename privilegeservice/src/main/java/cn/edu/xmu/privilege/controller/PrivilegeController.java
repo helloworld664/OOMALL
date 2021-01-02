@@ -5,6 +5,7 @@ import cn.edu.xmu.ooad.annotation.Depart;
 import cn.edu.xmu.ooad.annotation.LoginUser;
 import cn.edu.xmu.ooad.model.VoObject;
 import cn.edu.xmu.privilege.model.bo.Role;
+import cn.edu.xmu.privilege.model.bo.RolePrivilege;
 import cn.edu.xmu.privilege.model.bo.User;
 import cn.edu.xmu.privilege.model.vo.*;
 import cn.edu.xmu.ooad.util.Common;
@@ -62,6 +63,30 @@ public class PrivilegeController {
     @Autowired
     private UserProxyService userProxyService;
 
+    @GetMapping("shops/{did}/roles/{roleId}/privileges")
+    public Object getRolePrivileges(@PathVariable Long did, @PathVariable Long roleId) {
+//        ReturnObject returnObject = roleService.findRolePrivs(roleId);
+//        List<Object> result = new ArrayList();
+//        List<Object> ls = (List<Object>) returnObject.getData();
+//        for (Object rp : ls) {
+//            RolePrivilege p = (RolePrivilege) rp;
+//            if (did == 0 || did.equals(p.getCreator().getDepartId())) {
+//                result.add(p);
+//            }
+//        }
+//
+//        Object o = Common.decorateReturnObject(new ReturnObject(result));
+//        return o;
+
+        ReturnObject<List> returnObject = roleService.adminFindRolePrivs(roleId, did);
+
+        if (returnObject.getCode() == ResponseCode.OK) {
+            return Common.getListRetObject(returnObject);
+        } else {
+            return Common.decorateReturnObject(returnObject);
+        }
+    }
+
     /***
      * 取消用户权限
      * @param userid 用户id
@@ -111,6 +136,7 @@ public class PrivilegeController {
 
         ReturnObject<VoObject> returnObject =  userService.assignRole(createid, userid, roleid, did);
         if (returnObject.getCode() == ResponseCode.OK) {
+            httpServletResponse.setStatus(HttpStatus.CREATED.value());
             return Common.getRetObject(returnObject);
         } else {
             return Common.decorateReturnObject(returnObject);
@@ -416,8 +442,9 @@ public class PrivilegeController {
             @ApiResponse(code = 736, message = "角色名已存在"),
     })
     @Audit
-    @PostMapping("/roles")
-    public Object insertRole(@Validated @RequestBody RoleVo vo, BindingResult bindingResult,
+    @PostMapping("/shops/{did}/roles")
+    public Object insertRole(@PathVariable("did") Long did,
+                             @Validated @RequestBody RoleVo vo, BindingResult bindingResult,
                              @LoginUser @ApiIgnore @RequestParam(required = false) Long userId,
                              @Depart @ApiIgnore @RequestParam(required = false) Long departId) {
         logger.debug("insert role by userId:" + userId);
@@ -427,16 +454,21 @@ public class PrivilegeController {
             logger.debug("validate fail");
             return returnObject;
         }
-        Role role = vo.createRole();
-        role.setCreatorId(userId);
-        role.setDepartId(departId);
-        role.setGmtCreate(LocalDateTime.now());
-        ReturnObject retObject = roleService.insertRole(role);
-        if (retObject.getData() != null) {
-            httpServletResponse.setStatus(HttpStatus.CREATED.value());
-            return Common.getRetObject(retObject);
-        } else {
-            return Common.getNullRetObj(new ReturnObject<>(retObject.getCode(), retObject.getErrmsg()), httpServletResponse);
+        if(did.equals(departId)){
+            Role role = vo.createRole();
+            role.setCreatorId(userId);
+            role.setDepartId(departId);
+            role.setGmtCreate(LocalDateTime.now());
+            ReturnObject retObject = roleService.insertRole(role);
+            if (retObject.getData() != null) {
+                httpServletResponse.setStatus(HttpStatus.CREATED.value());
+                return Common.getRetObject(retObject);
+            } else {
+                return Common.getNullRetObj(new ReturnObject<>(retObject.getCode(), retObject.getErrmsg()), httpServletResponse);
+            }
+        }
+        else{
+            return Common.getNullRetObj(new ReturnObject<>(ResponseCode.FIELD_NOTVALID, String.format("部门id不匹配：" + did)), httpServletResponse);
         }
     }
 
@@ -551,7 +583,8 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @PutMapping("adminusers/{id}")
+    // todo 干得漂亮，漏了shops
+    @PutMapping("/shops/{shopId}/adminusers/{id}")
     public Object modifyUserInfo(@PathVariable Long id, @Validated @RequestBody UserVo vo, BindingResult bindingResult) {
         if (logger.isDebugEnabled()) {
             logger.debug("modifyUserInfo: id = "+ id +" vo = " + vo);
@@ -583,7 +616,8 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @DeleteMapping("adminusers/{id}")
+    // todo 干得漂亮，漏了shops
+    @DeleteMapping("/shops/{shopId}/adminusers/{id}")
     public Object deleteUser(@PathVariable Long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("deleteUser: id = "+ id);
@@ -609,7 +643,7 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @PutMapping("adminusers/{id}/forbid")
+    @PutMapping("/shops/{did}/adminusers/{id}/forbid")
     public Object forbidUser(@PathVariable Long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("forbidUser: id = "+ id);
@@ -635,7 +669,7 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit // 需要认证
-    @PutMapping("adminusers/{id}/release")
+    @PutMapping("/shops/{did}/adminusers/{id}/release")
     public Object releaseUser(@PathVariable Long id) {
         if (logger.isDebugEnabled()) {
             logger.debug("releaseUser: id = "+ id);
@@ -671,6 +705,7 @@ public class PrivilegeController {
         if(jwt.getData() == null){
             return ResponseUtil.fail(jwt.getCode(), jwt.getErrmsg());
         }else{
+            httpServletResponse.setStatus(HttpStatus.CREATED.value());
             return ResponseUtil.ok(jwt.getData());
         }
     }
@@ -691,7 +726,7 @@ public class PrivilegeController {
         if (success.getData() == null)  {
             return ResponseUtil.fail(success.getCode(), success.getErrmsg());
         }else {
-            return ResponseCode.OK;
+            return ResponseUtil.ok();
         }
     }
 
@@ -822,8 +857,10 @@ public class PrivilegeController {
     @GetMapping("shops/{did}/proxies")
     public Object listProxies(Long aId, Long bId,@PathVariable Long did) {
         logger.debug("listProxies: aId = " + aId + " bId = " + bId);
-        ReturnObject<List> returnObject = userProxyService.listProxies(aId, bId,did);
-        return returnObject;
+        ReturnObject returnObject = userProxyService.listProxies(aId, bId,did);
+        logger.info("before return at controller");
+        logger.info("return: " + returnObject);
+        return ResponseUtil.ok(returnObject);
     }
 
     /**
@@ -1055,7 +1092,8 @@ public class PrivilegeController {
             @ApiResponse(code = 0, message = "成功"),
     })
     @Audit
-    @PostMapping("roles/{roleid}/privileges/{privilegeid}")
+    // todo 干得漂亮，shops没写
+    @PostMapping("/shops/{shopId}/roles/{roleid}/privileges/{privilegeid}")
     public Object addRolePriv(@PathVariable Long roleid, @PathVariable Long privilegeid, @LoginUser @ApiIgnore @RequestParam(required = false, defaultValue = "0") Long userId){
         logger.debug("addRolePriv: id = "+ roleid+" userid: id = "+ userId);
         ReturnObject<VoObject> returnObject = roleService.addRolePriv(roleid, privilegeid, userId);

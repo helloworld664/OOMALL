@@ -3,7 +3,9 @@ package cn.edu.xmu.flashsale.model.vo;
 import lombok.Data;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-26 22:56
+ * Modified at 2020-12-26 22:56
  */
 
 @Data

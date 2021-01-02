@@ -25,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-06 08:47
+ * Modified at 2020-12-27 11:51
  */
 
 @Repository
@@ -202,7 +204,7 @@ public class PresaleDao implements InitializingBean {
             if (presalePo.getBeginTime().compareTo(LocalDateTime.now()) < 0 && presalePo.getEndTime().compareTo(LocalDateTime.now()) > 0)
                 return new ReturnObject(ResponseCode.PRESALE_STATENOTALLOW);
             if (createPresaleVo.getBeginTime().compareTo(LocalDateTime.now()) < 0 || createPresaleVo.getEndTime().compareTo(createPresaleVo.getBeginTime()) < 0
-                || createPresaleVo.getPayTime().compareTo(createPresaleVo.getBeginTime()) < 0 || createPresaleVo.getPayTime().compareTo(createPresaleVo.getEndTime()) > 0)
+                    || createPresaleVo.getPayTime().compareTo(createPresaleVo.getBeginTime()) < 0 || createPresaleVo.getPayTime().compareTo(createPresaleVo.getEndTime()) > 0)
                 return new ReturnObject<>(ResponseCode.FIELD_NOTVALID);
             presalePo = createPresaleVo.createPresale();
             presalePo.setGmtModified(LocalDateTime.now());

@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-07 10:51
+ * Modified at 2020-12-07 10:51
  */
 
 @Data
@@ -34,7 +36,7 @@ public class FlashSaleItem implements VoObject, Serializable {
 
     private LocalDateTime gmtModified;
 
-    public FlashSaleItem(FlashSaleItemPo flashSaleItemPo, GoodsSkuVo goodsSku) {
+    public FlashSaleItem(FlashSaleItemPo flashSaleItemPo, GoodsSku goodsSku) {
         this.id = flashSaleItemPo.getId();
         this.saleId = flashSaleItemPo.getSaleId();
         this.gmtCreated = flashSaleItemPo.getGmtCreate();

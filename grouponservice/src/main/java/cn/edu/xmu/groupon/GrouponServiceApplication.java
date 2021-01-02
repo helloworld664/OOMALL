@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-02 13:06
+ * Modified at 2020-12-02 13:06
  */
 
 @SpringBootApplication(scanBasePackages = {"cn.edu.xmu.ooad", "cn.edu.xmu.groupon"})

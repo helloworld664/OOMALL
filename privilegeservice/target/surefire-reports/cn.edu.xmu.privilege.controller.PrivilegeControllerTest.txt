@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.xmu.privilege.controller.PrivilegeControllerTest
+-------------------------------------------------------------------------------
+Tests run: 15, Failures: 14, Errors: 1, Skipped: 0, Time elapsed: 20.965 s <<< FAILURE! - in cn.edu.xmu.privilege.controller.PrivilegeControllerTest
+changePriv1  Time elapsed: 0.373 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login(PrivilegeControllerTest.java:410)
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.changePriv1(PrivilegeControllerTest.java:313)
+
+changePriv2  Time elapsed: 0.09 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login(PrivilegeControllerTest.java:410)
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.changePriv2(PrivilegeControllerTest.java:348)
+
+changePriv3  Time elapsed: 0.078 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login(PrivilegeControllerTest.java:410)
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.changePriv3(PrivilegeControllerTest.java:381)
+
+login1  Time elapsed: 0.072 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login1(PrivilegeControllerTest.java:89)
+
+login2  Time elapsed: 0.066 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login2(PrivilegeControllerTest.java:111)
+
+login3  Time elapsed: 0.065 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login3(PrivilegeControllerTest.java:134)
+
+login4  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login4(PrivilegeControllerTest.java:157)
+
+login5  Time elapsed: 0.075 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login5(PrivilegeControllerTest.java:180)
+
+login6  Time elapsed: 0.063 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login6(PrivilegeControllerTest.java:203)
+
+login7  Time elapsed: 0.071 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login7(PrivilegeControllerTest.java:238)
+
+login8  Time elapsed: 0.066 s  <<< ERROR!
+java.lang.NullPointerException
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login8(PrivilegeControllerTest.java:258)
+
+logout  Time elapsed: 0.067 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.logout(PrivilegeControllerTest.java:282)
+
+getAllPriv1  Time elapsed: 0.081 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login(PrivilegeControllerTest.java:410)
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.getAllPriv1(PrivilegeControllerTest.java:39)
+
+getAllPriv2  Time elapsed: 0.263 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<401> but was:<200>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.getAllPriv2(PrivilegeControllerTest.java:52)
+
+getAllPriv3  Time elapsed: 0.076 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.login(PrivilegeControllerTest.java:410)
+	at cn.edu.xmu.privilege.controller.PrivilegeControllerTest.getAllPriv3(PrivilegeControllerTest.java:63)
+

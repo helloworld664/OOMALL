@@ -4,7 +4,9 @@ import cn.edu.xmu.groupon.model.bo.Groupon;
 import lombok.Data;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-04 09:48
+ * Modified at 2020-12-18 20:08
  */
 
 @Data

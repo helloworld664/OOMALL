@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.PrimitiveIterator;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-06 08:46
+ * Modified at 2020-12-27 08:23
  */
 
 @Api(value = "预售服务", tags = "presale")
@@ -233,7 +235,12 @@ public class PresaleController {
         return Common.decorateReturnObject(returnObject);
     }
 
-
+    /**
+     * 管理员上线预售活动
+     * @param shopId
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "管理员上线预售活动")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "header", dataType = "String", name = "authorization", value = "用户token", required = true),
@@ -256,8 +263,12 @@ public class PresaleController {
         return Common.decorateReturnObject(returnObject);
     }
 
-
-
+    /**
+     * 管理员下线预售活动
+     * @param shopId
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "管理员下线预售活动")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "header", dataType = "String", name = "authorization", value = "用户token", required = true),

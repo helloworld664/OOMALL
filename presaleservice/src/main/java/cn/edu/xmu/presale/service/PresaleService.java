@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-06 08:46
+ * Modified at 2020-12-27 07:10
  */
 
 @Service
@@ -106,7 +108,7 @@ public class PresaleService {
      */
     public ReturnObject createPresale(Long shopId, Long id, CreatePresaleVo createPresaleVo) {
         if (createPresaleVo.getBeginTime().compareTo(LocalDateTime.now()) < 0 || createPresaleVo.getEndTime().compareTo(createPresaleVo.getBeginTime()) <= 0
-            || createPresaleVo.getPayTime().compareTo(createPresaleVo.getBeginTime()) < 0 || createPresaleVo.getPayTime().compareTo(createPresaleVo.getEndTime()) > 0)
+                || createPresaleVo.getPayTime().compareTo(createPresaleVo.getBeginTime()) < 0 || createPresaleVo.getPayTime().compareTo(createPresaleVo.getEndTime()) > 0)
             return new ReturnObject(ResponseCode.FIELD_NOTVALID);
         if (presaleDao.checkIfSKUInActivities(id, createPresaleVo.getBeginTime(), createPresaleVo.getEndTime()).getData() == true)
             return new ReturnObject(ResponseCode.PRESALE_STATENOTALLOW);

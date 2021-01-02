@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-06 08:45
+ * Modified at 2020-12-06 08:46
  */
 
 @SpringBootApplication(scanBasePackages = {"cn.edu.xmu.ooad", "cn.edu.xmu.presale"})

@@ -33,7 +33,9 @@ import java.util.List;
 
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-07 10:37
+ * Modified at 2021-01-01 03:03
  */
 
 @Service
@@ -63,14 +65,18 @@ public class FlashSaleService {
 
     public Flux<FlashSaleItem> getFlashSaleInDetail(Long segId) {
         String segIdStr = "seg_" + segId;
-        // To be implement
-        //return reactiveRedisTemplate.opsForSet().members(segIdStr).map(x -> (FlashSaleItem) x);
-        return new Flux<FlashSaleItem>() {
-            @Override
-            public void subscribe(CoreSubscriber<? super FlashSaleItem> coreSubscriber) {
-
+        if (redisTemplate.opsForSet().size(segIdStr) == 0) {
+            List<FlashSalePo> flashSalePo = flashSaleDao.getFlashSaleByTimeSegmentId(segId);
+            if (flashSalePo.size() != 0) {
+                List<FlashSaleItemPo> flashSaleItemPos = flashSaleItemDao.getFlashSaleItemPoFromSaleId(flashSalePo.get(0).getId());
+                for (FlashSaleItemPo flashSaleItemPo : flashSaleItemPos) {
+                    GoodsSku goodsSku = goodsService.getSkuById(flashSaleItemPo.getGoodsSkuId());
+                    FlashSaleItem flashSaleItem = new FlashSaleItem(flashSaleItemPo, goodsSku);
+                    redisTemplate.opsForSet().add(segIdStr, flashSaleItem);
+                }
             }
-        };
+        }
+        return reactiveRedisTemplate.opsForSet().members(segIdStr).map(x -> (FlashSaleItem) x);
     }
 
     @Transactional

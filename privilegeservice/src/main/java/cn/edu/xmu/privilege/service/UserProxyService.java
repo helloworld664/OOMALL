@@ -40,7 +40,10 @@ public class UserProxyService {
     }
 
     public ReturnObject listProxies(Long aId, Long bId,Long did) {
-        return userProxyDao.listProxies(aId, bId,did);
+        logger.info("entering service");
+        ReturnObject returnObject =  userProxyDao.listProxies(aId, bId,did);
+        logger.info("before return at service");
+        return returnObject;
     }
 
     public ReturnObject removeAllProxies(Long id,Long did) {

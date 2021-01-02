@@ -1,1 +1,17 @@
+cn\edu\xmu\groupon\model\vo\GrouponSimpleRetVo.class
+cn\edu\xmu\groupon\model\bo\Groupon$State.class
+cn\edu\xmu\groupon\model\po\GrouponPoExample$GeneratedCriteria.class
+cn\edu\xmu\groupon\model\po\GrouponPo.class
+cn\edu\xmu\groupon\controller\GrouponController.class
+cn\edu\xmu\groupon\model\po\GrouponPoExample$Criteria.class
+cn\edu\xmu\groupon\model\po\GrouponPoExample$Criterion.class
+cn\edu\xmu\groupon\model\vo\GrouponRetVo.class
+cn\edu\xmu\groupon\model\bo\Groupon.class
+cn\edu\xmu\groupon\model\vo\GrouponStateVo.class
+cn\edu\xmu\groupon\model\po\GrouponPoExample.class
+cn\edu\xmu\groupon\model\vo\CreateGrouponVo.class
+cn\edu\xmu\groupon\service\GrouponService.class
+cn\edu\xmu\groupon\mapper\GrouponPoMapper.class
 cn\edu\xmu\groupon\GrouponServiceApplication.class
+cn\edu\xmu\groupon\dao\GrouponDao.class
+cn\edu\xmu\groupon\model\vo\GrouponVo.class

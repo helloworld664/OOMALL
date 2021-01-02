@@ -1,5 +1,7 @@
 package cn.edu.xmu.privilegegateway.localfilter;
 
+import cn.edu.xmu.privilegegateway.ResponseCode;
+import cn.edu.xmu.privilegegateway.util.JacksonUtil;
 import cn.edu.xmu.privilegegateway.util.JwtHelper;
 import cn.edu.xmu.privilegeservice.client.IGatewayService;
 import cn.edu.xmu.privilegegateway.util.GatewayUtil;
@@ -53,6 +55,8 @@ public class AuthFilter implements GatewayFilter, Ordered {
      * @author wwc
      * @date 2020/12/02 17:13
      */
+    // todo shops/{id}/proxies/{id}，权限表里无该权限
+    // todo 干得漂亮，好多测试都用到shops/0/roles/85/privileges，没有这个url
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
@@ -64,15 +68,16 @@ public class AuthFilter implements GatewayFilter, Ordered {
         // 判断token是否为空，无需token的url在配置文件中设置
         logger.debug("filter: token = " + token);
         if (StringUtil.isNullOrEmpty(token)){
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            return response.writeWith(Mono.empty());
+            // todo 干得漂亮
+            return getErrorResponse(HttpStatus.UNAUTHORIZED, new ResponseCode(704, "需要先登录"), response, "");
         }
         // 判断token是否合法
         JwtHelper.UserAndDepart userAndDepart = new JwtHelper().verifyTokenAndGetClaims(token);
         if (userAndDepart == null) {
             // 若token解析不合法
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            return response.writeWith(Mono.empty());
+            // todo 干得漂亮
+            return getErrorResponse(HttpStatus.UNAUTHORIZED, new ResponseCode(501, "JWT不合法"), response, "");
+            //return response.writeWith(Mono.empty());
         } else {
             // 若token合法
             // 获取redis工具
@@ -84,8 +89,9 @@ public class AuthFilter implements GatewayFilter, Ordered {
                 if (redisTemplate.hasKey(singleBanSetName)) {
                     // 获取全部被ban的jwt,若banjwt中有该token则拦截该请求
                     if (redisTemplate.opsForSet().isMember(singleBanSetName, token)) {
-                        response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                        return response.writeWith(Mono.empty());
+                        // todo 干得漂亮
+                        return getErrorResponse(HttpStatus.UNAUTHORIZED, new ResponseCode(501, "JWT不合法"), response, "");
+                        // return response.writeWith(Mono.empty());
                     }
                 }
             }
@@ -95,24 +101,28 @@ public class AuthFilter implements GatewayFilter, Ordered {
             Long departId = userAndDepart.getDepartId();
             Date expireTime = userAndDepart.getExpTime();
             // 检验api中传入token是否和departId一致
+           String pathId = null;
             if (url != null) {
                 // 获取路径中的shopId
                 Map<String, String> uriVariables = exchange.getAttribute(ServerWebExchangeUtils.URI_TEMPLATE_VARIABLES_ATTRIBUTE);;
-                String pathId = uriVariables.get("shopid");
+                // todo 干得漂亮
+                pathId = uriVariables.get("shopId");
                 if (pathId != null && !departId.equals(0L)) {
                     // 若非空且解析出的部门id非0则检查是否匹配
                     if (!pathId.equals(departId.toString())) {
                         // 若id不匹配
                         logger.debug("did不匹配:" + pathId);
-                        response.setStatusCode(HttpStatus.FORBIDDEN);
-                        return response.writeWith(Mono.empty());
+                        // todo 干得漂亮
+                        return getErrorResponse(HttpStatus.FORBIDDEN, new ResponseCode(505, "s-id不匹配"), response, "");
+                        // return response.writeWith(Mono.empty());
                     }
                 }
                 logger.debug("did匹配");
             } else {
                 logger.debug("请求url为空");
-                response.setStatusCode(HttpStatus.BAD_REQUEST);
-                return response.writeWith(Mono.empty());
+                // todo 干得漂亮
+                return getErrorResponse(HttpStatus.BAD_REQUEST, new ResponseCode(503, "s-路径不合法"), response, "");
+                // return response.writeWith(Mono.empty());
             }
             String jwt = token;
             // 判断该token有效期是否还长，load用户权限需要传token，将要过期的旧的token暂未放入banjwt中，有重复登录的问题
@@ -142,6 +152,7 @@ public class AuthFilter implements GatewayFilter, Ordered {
             // 找到该url所需要的权限id
             String urlKey = commonUrl + "-" + GatewayUtil.RequestType.getCodeByType(method).getCode().toString();
             String privKey = GatewayUtil.getUrlPrivByKey(urlKey);
+
             if (privKey == null || privKey.isEmpty()) {
                 // 若该url无对应权限id
                 logger.debug("该url无权限id:" + urlKey);
@@ -168,7 +179,7 @@ public class AuthFilter implements GatewayFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE;
+        return 0;
     }
 
     public static class Config {
@@ -185,5 +196,15 @@ public class AuthFilter implements GatewayFilter, Ordered {
         public void setTokenName(String tokenName) {
             this.tokenName = tokenName;
         }
+    }
+
+    public Mono<Void> getErrorResponse(HttpStatus status, ResponseCode code, ServerHttpResponse response, String message){
+        response.setStatusCode(status);
+        response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
+        Map returnObj= new HashMap<>();
+        returnObj.put("errno", code.getErrno());
+        returnObj.put("errmsg", code.getErrmsg());
+        DataBuffer db=response.bufferFactory().wrap(JacksonUtil.toJson(returnObj).getBytes());
+        return response.writeWith(Mono.just(db));
     }
 }

@@ -1,0 +1,16 @@
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest3.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest8.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest1.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest5.class
+cn\edu\xmu\privilege\dao\UserDaoTest.class
+cn\edu\xmu\privilege\dao\NewUserDaoTest.class
+cn\edu\xmu\privilege\dao\RoleDaoTest.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest7.class
+cn\edu\xmu\privilege\dao\PrivilegeDaoTest.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest.class
+cn\edu\xmu\privilege\controller\RegisterValidationAndStateTest.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest2.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest4.class
+cn\edu\xmu\privilege\bloom\RedisBloomFilterTest.class
+cn\edu\xmu\privilege\dao\UserProxyDaoTest.class
+cn\edu\xmu\privilege\controller\PrivilegeControllerTest6.class

@@ -153,6 +153,7 @@ public class UserProxyDao {
     }
 
     public ReturnObject listProxies(Long aId, Long bId,Long did) {
+        logger.info("enter dao");
         UserProxyPoExample example = new UserProxyPoExample();
         UserProxyPoExample.Criteria criteria = example.createCriteria();
         if (aId != null) {
@@ -175,6 +176,7 @@ public class UserProxyDao {
                 return new ReturnObject<>(ResponseCode.RESOURCE_FALSIFY);
             }
         }
+        logger.info("before return at dao");
         return new ReturnObject<>(results);
     }
 

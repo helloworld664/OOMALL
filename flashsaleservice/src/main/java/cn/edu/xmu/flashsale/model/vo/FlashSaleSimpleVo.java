@@ -9,21 +9,15 @@ import org.springframework.boot.jdbc.metadata.DataSourcePoolMetadata;
 import java.time.LocalDateTime;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-07 11:20
+ * Modified at 2020-12-10 15:21
  */
 
 @Data
 @ApiModel
 public class FlashSaleSimpleVo implements VoObject {
     private LocalDateTime flashDate;
-
-    public LocalDateTime getFlashDate() {
-        return flashDate;
-    }
-
-    public void setFlashDate(LocalDateTime flashDate) {
-        this.flashDate = flashDate;
-    }
 
     public FlashSalePo createFlashSale() {
         FlashSalePo flashSalePo = new FlashSalePo();

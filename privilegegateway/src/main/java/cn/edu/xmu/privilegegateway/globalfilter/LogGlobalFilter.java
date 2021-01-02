@@ -68,7 +68,7 @@ public class LogGlobalFilter implements GlobalFilter, Ordered {
         Log log = processLog(exchange.getRequest());
         log.setBeginTime(startTime);
         log.setUuid(uuid.toString());
-        sendLog(log);
+//        sendLog(log);
 
         return chain.filter(exchange).then(Mono.fromRunnable(()->{
             LocalDateTime endTime = LocalDateTime.now();
@@ -89,7 +89,7 @@ public class LogGlobalFilter implements GlobalFilter, Ordered {
             log.setEndTime(endTime);
             log.setSuccess(exchange.getResponse().getStatusCode().is2xxSuccessful() ? (byte)1 :(byte)0);
 
-            sendLog(log);
+//            sendLog(log);
         }));
     }
 
@@ -110,7 +110,7 @@ public class LogGlobalFilter implements GlobalFilter, Ordered {
 
         HttpMethod httpMethod = serverHttpRequest.getMethod();
         logger.debug(commonUri + '-' + methodMap.get(httpMethod));
-        Integer privilegeId = (Integer) redisTemplate.boundHashOps("Priv").get(commonUri + '-' + methodMap.get(httpMethod));
+        Integer privilegeId = 1;//(Integer) redisTemplate.boundHashOps("Priv").get(commonUri + '-' + methodMap.get(httpMethod));
 
         Log log = new Log();
         privilegeId = privilegeId == null ? -1 : privilegeId; // 如果Redis中没有关于此URL的记录则赋值-1

@@ -36,7 +36,7 @@ public class PrivilegeDao implements InitializingBean {
     private PrivilegePoMapper poMapper;
 
     @Autowired
-    private RedisTemplate<String, Serializable> redisTemplate;
+    private RedisTemplate redisTemplate;
 
     /**
      * 将权限载入到本地缓存中
@@ -168,6 +168,7 @@ public class PrivilegeDao implements InitializingBean {
         PrivilegePoExample.Criteria criteria = example.createCriteria();
         criteria.andRequestTypeEqualTo(vo.getRequestType()).andUrlEqualTo(vo.getUrl());
 
+        // todo changePrivTest6失败，应该在这里返回权限重复
         if(!poMapper.selectByExample(example).isEmpty()){
             return new ReturnObject(ResponseCode.URL_SAME, "URL和RequestType不得与已有的数据重复");
         }

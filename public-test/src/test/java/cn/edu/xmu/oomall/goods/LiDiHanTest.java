@@ -551,7 +551,7 @@ public class LiDiHanTest {
     @Test
     public void transSkuImage() throws Exception {
         String token = this.login("13088admin","123456");
-        File file = new File("timg.png");
+        File file = new File("time.png");
         byte[] data = null;
         // 读取图片字节数组
         try {

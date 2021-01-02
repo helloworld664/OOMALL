@@ -4,7 +4,9 @@ import cn.edu.xmu.presale.model.bo.Presale;
 import lombok.Data;
 
 /**
- * @author XC
+ * @author XC 3304
+ * Created at 2020-12-06 08:48
+ * Modified at 2020-12-16 00:03
  */
 
 @Data

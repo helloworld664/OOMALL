@@ -78,12 +78,12 @@ public class UserDao{
     private RolePoMapper rolePoMapper;
 
     @Autowired
-    private RedisTemplate<String, Serializable> redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private RoleDao roleDao;
 
-    @Autowired
+    // @Autowired
     private JavaMailSender mailSender;
     /**
      * @author yue hao
@@ -389,6 +389,18 @@ public class UserDao{
             return false;
         }
         if (userPo.getDepartId() != departid) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkRoleUserExist(Long roleid,Long userid){
+        UserRolePoExample userRolePoExample = new UserRolePoExample();
+        UserRolePoExample.Criteria criteria = userRolePoExample.createCriteria();
+        criteria.andUserIdEqualTo(userid);
+        criteria.andRoleIdEqualTo(roleid);
+        List<UserRolePo> userRolelist = userRolePoMapper.selectByExample(userRolePoExample);
+        if(userRolelist.size()>0){
             return false;
         }
         return true;

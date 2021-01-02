@@ -29,7 +29,7 @@ public class CheapestPercentageDiscount extends BaseCouponDiscount {
 		long discount = (long) ((1.0 * value / 100) * orderItems.get(min).getPrice());
 
 		for (OrderItem oi : orderItems) {
-			oi.setDiscount((long) ((1.0 * oi.getPrice() * oi.getQuantity()) / total * discount / oi.getQuantity()));
+			oi.setDiscount(oi.getPrice() - (long) ((1.0 * oi.getPrice() * oi.getQuantity()) / total * discount / oi.getQuantity()));
 		}
 	}
 }
