@@ -2,9 +2,9 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8081
+        url: http://172.16.2.193:8081
   datasource:
-    url: jdbc:mysql://localhost:3306/oomall_goods?serverTimezone=GMT%2B8
+    url: jdbc:mysql://172.16.4.159:3306/oomall?serverTimezone=GMT%2B8
     username: dbuser
     password: 123456
     druid:

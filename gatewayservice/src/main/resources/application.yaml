@@ -20,27 +20,27 @@ spring:
               - OPTIONS
       routes:
         - id: goods
-          uri: http://127.0.0.1:8085
+          uri: http://172.16.2.193:8081
           predicates:
             - Path=/skus/states,/skus,/skus/{id},/categories/{id}/subcategories,/spus/{id},/brands,/shops/{shopId}/spus/{id}/skus,/shops/{shopId}/skus/{id}/uploadImg,/shops/{shopId}/skus/{id},/shops/{shopId}/categories/{id}/subcategories,/shops/{shopId}/categories/{id},/share/{sid}/skus/{id},/shops/{id}/spus,/shops/{shopId}/spus/{id},/shops/{shopId}/skus/{id}/onshelves,/shops/{shopId}/skus/{id}/offshelves,/shops/{shopId}/skus/{id}/floatPrices,/shops/{shopId}/floatPrices/{id},/shops/{id}/brands,/shops/{shopId}/brands/{id}/uploadImg,/shops/{shopId}/brands/{id},/shops/{shopId}/spus/{spuId}/categories/{id},/shops/{shopId}/spus/{spuId}/brands/{id},/comments/states,/orderitems/{id}/comments,/skus/{id}/comments,​/shops​/{did}​/comments​/{id}​/confirm,​/comments,​/shops​/{id}​/comments​/all,/shops/states,/shops,/shops/{id},/shops/{shopId}/newshops/{id}/audit,/shops/{id}/onshelves,/shops/{id}/offshelves
 
         - id: flashsale
-          uri: http://127.0.0.1:8083
+          uri: http://172.16.2.193:8081
           predicates:
             - Path=/timesegments/{id}/flashsales,/shops/{did}/timesegments/{id}/flashsales,/flashsales/current,/shops/{did}/flashsales/{id},/shops/{did}/flashsales/{id}/onshelves,/shops/{did}/flashsales/{id}/offshelves,/shops/{did}/flashsales/{id}/flashitems,/shops/{did}/flashsales/{fid}/flashitems/{id}
 
         - id: coupon
-          uri: http://127.0.0.1:8080
+          uri: http://172.16.2.193:8081
           predicates:
             - Path=/coupons/states,/shops/{shopId}/couponactivities,/shops/{shopId}/couponactivities/{id}/uploadImg,/couponactivities,/shops/{id}/couponactivities/invalid,/couponactivities/{id}/skus,/shops/{shopId}/couponactivities/{id},/shops/{shopId}/couponactivities/{id}/skus,/shops/{shopId}/couponskus/{id},/coupons,/couponactivities/{id}/usercoupons,/shops/{shopId}/couponactivities/{id}/onshelves,/shops/{shopId}/couponactivities/{id}/offshelves
 
         - id: presale
-          uri: http://127.0.0.1:8082
+          uri: http://172.16.2.193:8081
           predicates:
             - Path=/presales/states,/presales,/shops/{shopId}/presales,/shops/{shopId}/skus/{id}/presales,/shops/{shopId}/presales/{id},/shops/{shopId}/presales/{id}/onshelves,/shops/{shopId}/presales/{id}/offshelves,/groupons/states,/groupons,/shops/{id}/groupons,/shops/{shopId}/spus/{id}/groupons,/shops/{shopId}/groupons/{id},/shops/{shopId}/groupons/{id}/onshelves,/shops/{shopId}/groupons/{id}/offshelves
 
         - id: groupon
-          uri: http://127.0.0.1:8081
+          uri: http://172.16.2.193:8081
           predicates:
             - Path=/groupons/states,/groupons,/shops/{id}/groupons,/shops/{shopId}/spus/{id}/groupons,/shops/{shopId}/groupons/{id},/shops/{shopId}/groupons/{id}/onshelves,/shops/{shopId}/groupons/{id}/offshelves
 
