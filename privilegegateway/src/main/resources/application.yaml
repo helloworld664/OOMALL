@@ -2,18 +2,19 @@ server:
   port: 8088
 
 privilege-ip: localhost:8081
-other-ip: localhost:9999
-order-ip:
-  order: 192.168.43.239:9900
-  payment: 192.168.43.239:9400
-  freight: 192.168.43.50:9800
+#other-ip: localhost:9999
+#order-ip:
+#  order: 192.168.43.239:9900
+#  payment: 192.168.43.239:9400
+#  freight: 192.168.43.50:9800
 #  order: localhost:9900
 #  payment: localhost:9400
 #  freight: localhost:9800
-gateway:
-  activity: 192.168.43.25:8988
-  goods: 192.168.43.25:8907
-  falshsale: 192.168.43.25:8188
+gateway-service:
+  groupon-service: 172.16.3.184:8083
+  goods-service: 172.16.3.184:8083
+  falshsale-service: 172.16.3.184:8083
+  presale-service: 172.16.3.184:8083
 #  activity: localhost:8988
 #  goods: localhost:8907
 #  falshsale: localhost:8188
